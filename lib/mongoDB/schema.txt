@@ -1,0 +1,67 @@
+// *** 
+
+const session = [
+    "user_id",
+    "sessionToken",
+    "id",
+    "expires"
+]
+const account = [
+    "user_id",
+    "username",
+    "full-name",
+    "bio",
+    "favourite quote",
+    "email"
+
+]
+
+//***  content creatioN?
+
+const comments = [
+    "commentId",
+    "postId",
+    "poster_Id",
+    "commented_at",
+
+    "content"
+
+]
+
+const likes = [
+    "contentType", // comments, posts,  contentlib
+    "contentId",
+    "liker_id",
+    "liked_at"
+]
+
+//***  mentioN?
+
+const recomm = [
+    "contentType", // comments, posts,  contentlib
+    "contentId",
+    "recommender_id",
+    "recommended_to_id",
+    "recommended_at",
+    "message"
+]
+
+const notifcation = [
+    "notiftype",
+    "notifId",
+    "notidifieduser",
+    "notifTime",
+    "notifThumbnail",
+    "notifContent"
+]
+
+//*** Live
+
+const Review = [
+    "contentId",
+    "posterId",
+    "stars",
+    "likes",
+    "content",
+    "postedAt"
+]

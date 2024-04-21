@@ -1,14 +1,20 @@
+"use client";
+import { useAuth, useUser } from "@clerk/nextjs";
+
 import plantsImg from "@/public/Landing Page/Shopaholics Mostera.png";
 import bgImg from "@/public/Landing Page/Background.png";
 import boxImg from "@/public/Landing Page/Shopaholics Delivery Boxes.png";
 import postImg from "@/public/Landing Page/Posts.png";
 import chatsImg from "@/public/Landing Page/Shopaholics Communication.png";
 
-
-
 import Image from "next/image";
 import Link from 'next/link'
+import { redirect } from "next/navigation";
 export default function Home() {
+  const {userId} = useAuth();
+
+  if(userId)
+    redirect("/feed")
   return (
     <div className="bg-[#FFD4CC] h-[100vh] color-black grid grid-cols-10 grid-rows-7 overflow-hidden">
       <Image src={bgImg} alt="" className="col-span-full row-start-1"/>

@@ -14,13 +14,13 @@ export default function ProfileCard() {
   const profileId = useSearchParams().get("userId");
 
   return (
-    <div className="profile w-[100%] h-[80vh] my-5 grid grid-cols-[4fr_1fr]">
-      <div className="checkered-container  rounded-2xl z-0 grid grid-cols-7 grid-rows-5 relative ">
+    <div className="profile w-[100%] h-[80vh] my-5 grid">
+      <div className="checkered-container  rounded-2xl z-0 grid grid-cols-7 grid-rows-5 relative self-center ">
         <div className="row-end-2  col-start-4 relative">
           <Image
             width={150}
             height={100}
-            src={profileImgSample}
+            src={"https://www.investopedia.com/thmb/8-gLOsCajX0ZvU5FFXxO11ClvGQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-1463460814-286d8f0f5acc46af8e1f40010327bc5b.jpg"}
             alt=""
             className="relative z-10 rounded-full"
           />

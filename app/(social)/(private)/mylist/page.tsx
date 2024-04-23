@@ -38,7 +38,7 @@ export default function MyListPge()
     )
     return (
         
-        <div className="main flex flex-col items-center">
+        <div className="main flex flex-col items-center  mt-[15vh]">
             <div className="text-8xl">
                 My List
             </div>

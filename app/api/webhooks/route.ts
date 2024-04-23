@@ -59,20 +59,20 @@ export async function POST(req: Request) {
   
   // User created
   if(eventType == "user.created"){
-    const createUser =  await axios.post('/api/webhooks/user',body)
+    const createUser =  await axios.post('/api/user',body)
  }
   // // User Login
   // if(eventType == "session.created"){
-  //   const currUser = await axios.get('/api/webhooks/user',{data: body})
+  //   const currUser = await axios.get('/api/user',{data: body})
   // }
   // User delete sync
   if(eventType == "user.deleted"){
-    const delUser =  await axios.delete('/api/webhooks/user',{data: body})
+    const delUser =  await axios.delete('/api/user',{data: body})
  }
 
 //   // User update sync
 //   if(eventType == "user.created"){
-//     const createUser =  await axios.post('/api/webhooks/user',body)
+//     const createUser =  await axios.post('/api/user',body)
 //  }
 
   return new Response('', { status: 200 })

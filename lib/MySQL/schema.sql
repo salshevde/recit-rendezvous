@@ -8,26 +8,28 @@ USE trialproject;
 CREATE TABLE
     Users (
         UserID VARCHAR(40) PRIMARY KEY,
-        Username VARCHAR(50) UNIQUE NOT NULL,
-        Email VARCHAR(100) UNIQUE NOT NULL,
-        FirstName VARCHAR(100),
-        LastName VARCHAR(100),
+        Email VARCHAR(100) NOT NULL,
+        FullName VARCHAR(100),
         RegistrationDate DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 
 -- User posts
 CREATE TABLE
     Posts (
-        PostID VARCHAR(40) PRIMARY KEY,
+        PostID VARCHAR(40) PRIMARY KEY DEFAULT (UUID()),
         UserID VARCHAR(40),
-        Content VARCHAR(255) NOT NULL,
-        MediaURL VARCHAR(255),
         PostDate DATETIME DEFAULT CURRENT_TIMESTAMP,
         likeCount INT DEFAULT 0,
         commentCount INT DEFAULT 0
        
         --  ,FOREIGN KEY (UserID) REFERENCES Users (UserID)
     );
+                    
+CREATE TABLE temp_post_id(
+    auto_id INT AUTO_INCREMENT,
+    PostID CHAR(36),
+    PRIMARY KEY(auto_id)
+);
 
 -- Content Library
 CREATE TABLE

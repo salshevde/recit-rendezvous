@@ -1,8 +1,6 @@
 "use client";
-import axios from 'axios';
-import { UserButton, currentUser, useUser } from "@clerk/nextjs";
+import { UserButton,useUser } from "@clerk/nextjs";
 import {
-  CameraIcon,
   HeartIcon,
   GlobeAltIcon,
   BellAlertIcon,
@@ -10,9 +8,7 @@ import {
 } from "@heroicons/react/16/solid";
 import Link from "next/link";
 import Search from "../Search/Search";
-import { useEffect, useState } from 'react';
-import { getCurrentUserId } from '@/lib/actions';
-import { Loader } from 'lucide-react';
+import { Loader, WandSparkles } from 'lucide-react';
 const DotIcon = () => {
   return (
     <svg
@@ -72,6 +68,11 @@ export default function PublicNavbar() {
               url={`/profile?userId=${userId}`}
               labelIcon={<DotIcon />}
             />
+            <UserButton.UserProfileLink
+            label="Elevate My Profile"
+            url={`/profile/edit?userId=${userId}`}
+            labelIcon={<WandSparkles />}
+          />
           </UserButton>
         ) : (
           <Loader/> // Placeholder for loading state

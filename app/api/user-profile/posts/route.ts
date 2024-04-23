@@ -1,88 +1,79 @@
 import executeQuery from "@/lib/MySQL/db"
+import clientPromise from "@/lib/mongoDB/db";
 import { NextResponse } from "next/server"
 
 export const GET = async(req:Request, res:Response)=>{
     const getUrl = (new URL(await req.url)).searchParams
-    console.log(getUrl)
     const userId =(getUrl).get('userid')
-    console.log('testing')
     try {
-        const trialFetch = await executeQuery(
-            {query:'SELECT * FROM POSTS WHERE userID = ? ',
-            values:[userId]
-            }
-        )
+        const client = await clientPromise;
+        const db = client.db('posts');
+        const findQuery = db.collection(userId!).find({})
+        const postList = await findQuery.toArray()
         return NextResponse.json(
             {
-                mesage:"OK", trialFetch},
+                message:"OK", postList},
                 {status:200}
         )   
     } catch (err) {
         return NextResponse.json(
             {
-                mesage:"Error", err},
+                message:"Error", err},
                 {status:500}
         )        
     }
 }
 
-// export const POST = async (req: Request, res: Response) => {
-//     const body = (await req.json()).data;
-//     try {
-//         const trialFetch = await executeQuery(
-//             {
-//                 query: "INSERT INTO Users(UserID, Username, Email, FirstName, LastName,ProfilePicture) values (?,?,?,?,?,?)",
-//                 values: [
-//                     body.id,
-//                     body.username,
-//                     body.email_addresses[0].email_address,
-//                     body.first_name,
-//                     body.last_name,
-//                     body.profile_image_url
-//                 ]
-//             }
-//         )
-//         console.log(trialFetch)
-//         return NextResponse.json(
-//             {
-//                 mesage: "OK POST", trialFetch
-//             },
-//             { status: 200 }
-//         )
-//     } catch (err) {
-//         return NextResponse.json(
-//             {
-//                 mesage: "Error", err
-//             },
-//             { status: 500 }
-//         )
-//     }
-// }
+export const POST = async (req: Request, res: Response) => {
 
-// export const DELETE = async (req: Request, res: Response) => {
-//     const body = (await req.json()).data;
-//     try {
-//         const trialFetch = await executeQuery(
-//             {
-//                 query: "DELETE FROM USERS WHERE UserID = ?",
-//                 values: [
-//                     body.id
-//                 ]
-//             }
-//         )
-//         console.log(trialFetch)
-//         return NextResponse.json(
-//             {
-//                 mesage: "OK DELETE", trialFetch
-//             },
-//             { status: 200 }
-//         )
-//     } catch (err) {
-//         return NextResponse.json(
-//             {
-//                 mesage: "Error", err
-//             },
-//             { status: 500 }
-//         )
-//     }
-// }
+    // const userDetailsAuth  = (await currentUser())
+    try {
+        const body = await req.json()
+        
+        const client = await clientPromise;
+        const db = client.db('posts');
+        const insertQuerySQL = await executeQuery({
+            query: "INSERT INTO POSTS(UserID, Content) VALUES (?,?)",
+            values: [
+                body.userId,
+                body.title
+
+            ]
+        })
+
+        const postId = (await executeQuery({
+            query: 'SELECT * from temp_post_id ORDER BY auto_id DESC LIMIT 1',
+            values: []
+        }))[0].PostID
+
+
+        const insertQueryCollection = await db.collection(body.userId).insertOne({
+            title: body.title,
+            userId: body.userId,
+            content: body.content,
+            postId: postId,
+            mediaList: (body.imagesList).split(','),
+            likes: [],
+            comments: []
+
+        })
+
+
+
+        // console.log(insertQuery)
+        return NextResponse.json(
+            {
+                message: "OK", insertQueryCollection
+            },
+            { status: 200 }
+        )
+    } catch (err) {
+        return NextResponse.json(
+            {
+                message: "Error", err
+            },
+            { status: 500 }
+        )
+    }
+}
+

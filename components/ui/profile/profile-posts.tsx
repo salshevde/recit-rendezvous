@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import PostCard from "@/components/ui/feed/post/postCard"
+import { postDetails } from "@/lib/definitions";
 import axios from "axios";
 import { useParams, useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
@@ -29,7 +30,7 @@ export default function ProfileUnder()
     function getPosts(){
         axios.get(`/api/user-profile/posts/?userid=${userId}`)
             .then(({data}) => {
-                const res = data.trialFetch
+                const res = data.postList
                 setPostsList(res)
                 
                 return res
@@ -49,24 +50,23 @@ export default function ProfileUnder()
 
     useEffect(() => {
         getPosts(); 
-      }, []);
+      });
 
     
     return (
         
         <div className="main flex flex-col items-center w-[100%]">
 
-            {postsList.map((post, index)=>{
+            {postsList?postsList.map((post:postDetails)=>{
                 return(
                     <PostCard
-                    key = {post.postID}
-                    UserID ={post.UserID}
-                    Content= {post.Content}
+                    key = {post.postId}
+                    post = {post}
 
                     />
                 )
             }
-        )}
+        ):null}
             
         </div>
                 

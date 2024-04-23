@@ -6,12 +6,12 @@
     myList
     
 -- personal profile 
-    create post/ comments/ like/ tag
+    create comments/ like/ tag
     suggest system
     signUp page
     notifications
     ELEVATE YOUR PROFILE - button
-    profile picture from search params
+    profile from search params
 -- UI
     myList
     Activity Feed Sidebars 

@@ -6,34 +6,9 @@ const session = [
     "id",
     "expires"
 ]
-const account = [
-    "user_id",
-    "username",
-    "full-name",
-    "bio",
-    "favourite quote",
-    "email"
 
-]
 
 //***  content creatioN?
-
-const comments = [
-    "commentId",
-    "postId",
-    "poster_Id",
-    "commented_at",
-
-    "content"
-
-]
-
-const likes = [
-    "contentType", // comments, posts,  contentlib
-    "contentId",
-    "liker_id",
-    "liked_at"
-]
 
 //***  mentioN?
 
@@ -65,3 +40,44 @@ const Review = [
     "content",
     "postedAt"
 ]
+
+///////////posts
+    user_id
+        -
+        -
+        -
+        comments[
+            
+        ]
+comments
+    postId
+            commenter
+            commentId
+            content
+accounts 
+    user_id
+        userId
+        username
+        bio
+        quote
+        email
+        full-name
+        postList[]
+        likedPostList[]
+        myList[]
+        publishedContentList[]
+Content
+    content
+        name
+        id
+        type 
+        heading
+        date
+        updateDate
+        chapters{
+            number
+            date
+            name
+            content
+        }
+    

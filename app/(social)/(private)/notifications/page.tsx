@@ -1,8 +1,8 @@
-import NotificationCard from "@/components/ui/notifications/notifCard";
+import NotificationCard from "@/components/ui/profile/notifications/notifCard";
 
 export default function notificationPage(){
     return(
-        <div>Notifcation Page
+        <div className=" mt-[15vh]">Notifcation Page
 
             <NotificationCard/>
             <NotificationCard/>

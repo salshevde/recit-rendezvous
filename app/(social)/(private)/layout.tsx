@@ -8,7 +8,7 @@ export default function privateInterfaceLayout({
   return (
     <div>
       <PrivateNavbar />
-      <div className="bg-[#f9f9f9] h-[85vh]">{children}</div>
+      <div className="bg-[#f9f9f9] h-[85vh] ">{children}</div>
     </div>
   );
 }
